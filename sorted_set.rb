@@ -1,4 +1,3 @@
-require "pry"
 class BasicArraySortedSet
   # Create your internal data structure here. It should be an empty array
   def initialize
