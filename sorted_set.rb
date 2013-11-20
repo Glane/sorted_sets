@@ -68,13 +68,12 @@ class HashSortedSet
 end
 
 
-
-
 # Internally use an array to represent the set
 # Maintain alphabetical order within the array, so that you can return
 # it when asking for sorted array
 class ArraySortedSet
   def initialize
+    @sorted_array = []
   end
 
   def name
@@ -85,13 +84,37 @@ class ArraySortedSet
   # Return false if the element already existing in the array
   # Return original element if the insert succeeds
   def insert(element)
+
+    position = @sorted_array.find_index {|x| x >= element}
+
+    if @sorted_array.include?(element)
+      return false
+
+    elsif position 
+      @sorted_array.insert(position, element)
+
+    else
+      @sorted_array << element
+    end
+    return element
+
+
+    # THIS WAS THE ORIGINAL CODE THAT WORKED.... SEE ABOVE FOR ALTERNATE METHOD
+    # if @sorted_array.include?(element)
+    #   return false
+    # else 
+    #   @sorted_array = @sorted_array.push(element).sort
+    #   return element
+    # end
   end
 
   def include?(element)
+    @sorted_array.include?(element)
   end
 
   # You should be able to simply return the original array
   def get_sorted_array
+    return @sorted_array
   end
 end
 
